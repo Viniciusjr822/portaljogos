@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal dos Jogos</title>
+
+    <!-- Fonte Minecraft -->
+    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/736x/3b/7b/14/3b7b14bd9e46e7e940bb2d490c788bd7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Minecraftia', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .button {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 0 15px white;
+            transition: transform 0.3s, background-color 0.3s;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Morcego */
+        .transition {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            background-image: url('https://i.pinimg.com/736x/bf/8c/c4/bf8cc49ad70811681f7722c1af1dedfe.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes expandAndRotate {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(15) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(15) rotate(1080deg);
+                opacity: 1;
+            }
+        }
+
+        /* Tela escurecendo */
+        .black-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            opacity: 0;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        @keyframes fadeBlack {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Portal dos Jogos</h1>
+
+    <div class="sidebar">
+        <div class="button" onclick="startTransition('https://www.retrogames.onl/')">RetroGames</div>
+        <div class="button" onclick="startTransition('https://oskarstalberg.com/Townscaper/')">Townscaper</div>
+        <div class="button" onclick="startTransition('https://noclip.website/')">Noclip</div>
+        <div class="button" onclick="startTransition('https://hordes.io/')">Hordes.io</div>
+        <div class="button" onclick="startTransition('https://emupedia.net/beta/emuos/')">Emupedia</div>
+        <div class="button" onclick="startTransition('https://iogames.space/')">IO Games</div>
+        <div class="button" onclick="startTransition('https://shellshock.io/')">ShellShock.io</div>
+        <div class="button" onclick="startTransition('https://slowroads.io/')">SlowRoads.io</div>
+        <div class="button" onclick="startTransition('https://dj3d.io/')">DJ3D.io</div>
+    </div>
+
+    <div class="transition" id="transition"></div>
+    <div class="black-screen" id="black-screen"></div>
+
+    <script>
+        function startTransition(url) {
+            const transition = document.getElementById('transition');
+            const blackScreen = document.getElementById('black-screen');
+
+            // Inicia a animação do morcego
+            transition.style.animation = 'expandAndRotate 1s forwards';
+
+            // Inicia a tela preta
+            blackScreen.style.animation = 'fadeBlack 0.5s forwards';
+
+            // Redireciona após 1 segundo
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
